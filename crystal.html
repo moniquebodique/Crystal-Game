@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Crystal Game</title>
+  <!--Bootstrap Link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <!-- Link CSS -->
+  <link  rel="stylesheet" type="text/css" href="assets/css/style.css">
+ 
+</head>
+
+<body>
+
+  <div id="game">
+    <div class="jumbotron">
+      <h1 class="display-3">Crystals Collector</h1>
+      <p>You will be given a random number at the start of the game. <br><br> There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score. <br> You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. <br> The value of each crystal is hidden from you until you click on it. <br> Each time when the game starts, the game will change the values of each crystal.</p>
+</div>
+
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+  		<p> Number to Get: <span class="randomNumber"> </span>
+		</p>
+		<p> Wins : <span class="Wins"> </span>
+		</p>
+		<p> Losses : <span class="Losses"> </span>
+		</p>
+
+
+
+    </div>
+
+
+
+    <div class="col-sm-6">
+  <img class = "button" id="green" src="greengem.jpeg" alt="Crystal" style="width:50px;height:60px;">
+
+  <img class = "button" id="yellow" src="yellowgem.jpg" alt="Crystal" style="width:50px;height:60px;">
+
+  <img class = "button" id="red" src="redgem.jpg" alt="Crystal" style="width:50px;height:60px;">
+
+  <img class = "button" id="blue" src="bluegem.jpeg" alt="Crystal" style="width:50px;height:60px;">
+    </div>
+
+
+    <div class="col-sm-1">
+      
+    </div>
+
+
+  </div>
+</div>
+
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+  	$( document ).ready(function(){
+
+
+
+    // Selects a random number to be shown
+    var randomNumber = Math.floor(Math.random()*100);
+
+    // Setting up variables in hmtml
+    	$('#randomNumber').text(randomNumber);
+    	$('#numberWins').text(wins);
+    	$('#numberLosses').text(losses);
+
+ // Creating variables to hold the number of wins, losses, and total score. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    //var totalScore = 0;
+
+
+// Creating random numbers for each crystal
+  	var blueGem= Math.floor(Math.random()*10)
+	var yellowGem= Math.floor(Math.random()*10)
+	var redGem= Math.floor(Math.random()*10)
+	var greenGem= Math.floor(Math.random()*10)
+    var numberToMatch = 0; 
+
+   
+// This function is run whenever the user presses a key.
+    //document.onkeyup = function(event) {
+//resets the game
+function reset(){
+	randomNumber = Math.floor(Math.random()*100);
+		$('#randomNumber').text(randomNumber);
+
+	var blueGem= Math.floor(Math.random()*10)
+	var yellowGem= Math.floor(Math.random()*10)
+	var redGem= Math.floor(Math.random()*10)
+	var greenGem= Math.floor(Math.random()*10)
+	$('totalScore').text(totalScore);
+}
+
+
+//Create click for gems
+	$('#blue').on ('click', function(){
+		totalScore = totalScore + blueGem;
+		console.log("totalScore= " + totalScore)
+	if (totalScore == randomNumber){
+		Win ();}
+		else if (totalScore> randomNumber){
+		Lose();}
+
+
+	$('#red').on ('click', function(){
+		totalScore = totalScore + redGem;
+		console.log("Total Score = " + totalScore)
+	if (totalScore == randomNumber){
+		Win ();}
+		else if (totalScore> randomNumber){
+		Lose();}
+
+	$('#green').on ('click', function(){
+		totalScore = totalScore + greenGem;
+		console.log("Total Score = " + totalScore)
+	if (totalScore == randomNumber){
+		Win ();}
+		else if (totalScore> randomNumber){
+		Lose();}
+
+	$('#yellow').on ('click', function(){
+		totalScore = totalScore + yellowGem;
+		console.log("Total Score = " + totalScore)
+	if (totalScore == randomNumber){
+		Win ();}
+		else if (totalScore> randomNumber){
+		Lose();}
+	
+
+
+	})
+
+
+// Events that happpen when user wins, loses
+	function Win(){
+		wins++;
+		$('#numberWins').text(wins);
+		alert("You win!");
+		reset();}
+
+	function Lose(){
+		losses++;
+		alert("You lose!");
+		$('#numberLosses').text(losses);
+		reset();
+		}
+		//}
+		
+	
+		//})
+	
+	
+
+    
+    
+  </script>
+
+</body>
+  
+   
+
+
+
+
+
+
+</html>
